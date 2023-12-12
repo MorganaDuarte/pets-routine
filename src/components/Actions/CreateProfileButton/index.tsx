@@ -8,7 +8,7 @@ export default function CreateProfileButton() {
   }
   return(
     <>
-      <Button variant="outline-dark" onClick={navigateToCreate}>Criar perfil</Button>
+      <Button variant="outline-dark" onClick={navigateToCreate}>Criar pet</Button>
     </>
   )
 }
