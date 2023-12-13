@@ -1,11 +1,6 @@
 import { Form, Tab, Table, Tabs } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-
-interface Vaccines {
-  vaccine: string,
-  appliedDate: string,
-  replicateDate: string
-}
+import {Vaccines} from "../../types/vaccines";
 
 export default function Profile() {
   const location = useLocation();
