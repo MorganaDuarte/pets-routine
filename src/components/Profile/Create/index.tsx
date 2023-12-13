@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useState, ChangeEvent } from "react";
 import { IDog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
+import { Vaccines } from "../../../types/vaccines";
 
 export default function Create() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<IDog>({
     name: "",
     race: "",
     birthDate: "",
-    id: uuidv4()
+    id: uuidv4(),
+    vaccines: []
   });
   const [vaccineRows, setVaccineRows] = useState([
     { vaccine: 'Raiva', appliedDate: '', replicateDate: '' },
@@ -20,9 +22,23 @@ export default function Create() {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
-      id: uuidv4()
+      [name]: value
     }));
+  };
+  const handleVaccineChange = (index: number, field: keyof Vaccines, value: string) => {
+    setVaccineRows((prevRows) => {
+      const newRows = [...prevRows];
+      newRows[index][field] = value;
+
+      setFormData((prevData) => {
+        const newData = {...prevData}
+        newData.vaccines = newRows
+
+        return newData
+      });
+
+      return newRows;
+    });
   };
   const handleAddRow = () => {
     setVaccineRows((prevRows) => [
@@ -36,7 +52,6 @@ export default function Create() {
   const save = () => {
     const savedPets = localStorage.getItem("pets");
     const pets = savedPets ? JSON.parse(savedPets) : [];
-    console.log(pets)
     pets.push(formData)
     localStorage.setItem("pets", JSON.stringify(pets));
     navigateToProfile(formData);
@@ -52,7 +67,7 @@ export default function Create() {
           <Form.Label>Data de Nascimento</Form.Label>
           <Form.Control placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange}/>
         </Form.Group>
-        <Tabs defaultActiveKey="vaccine" transition={false} id="noanim-tab-example" className="mb-3">
+        <Tabs defaultActiveKey="vaccine" transition={false} className="mb-3">
           <Tab eventKey="vaccine" title="Vacinas">
             <Table striped bordered hover size="sm">
               <thead>
@@ -65,9 +80,9 @@ export default function Create() {
               <tbody>
                 {vaccineRows.map((row, index) => (
                   <tr key={index}>
-                    <td><Form.Control placeholder={row.vaccine} /></td>
-                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.appliedDate} /></td>
-                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.replicateDate} /></td>
+                    <td><Form.Control placeholder={row.vaccine} onChange={(e) => handleVaccineChange(index, 'vaccine', e.target.value)}/></td>
+                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.appliedDate} onChange={(e) => handleVaccineChange(index, 'appliedDate', e.target.value)} /></td>
+                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.replicateDate} onChange={(e) => handleVaccineChange(index, 'replicateDate', e.target.value)} /></td>
                   </tr>
                 ))}
               </tbody>
