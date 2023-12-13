@@ -1,13 +1,13 @@
 import { Form, Button, Table, Tab, Tabs } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState, ChangeEvent } from "react";
-import { IDog } from "../../../types/dogs";
+import { Dog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
 
 export default function Create() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<IDog>({
+  const [formData, setFormData] = useState<Dog>({
     name: "",
     race: "",
     birthDate: "",
@@ -46,7 +46,7 @@ export default function Create() {
       { vaccine: '', appliedDate: '', replicateDate: '' }
     ]);
   };
-  function navigateToProfile(dog: IDog ) {
+  function navigateToProfile(dog: Dog ) {
     navigate(`/profile/${dog.id}`, { state: { dog } })
   }
   const save = () => {

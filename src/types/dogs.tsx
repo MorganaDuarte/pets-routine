@@ -1,6 +1,6 @@
 import { Vaccines } from "./vaccines";
 
-export interface IDog {
+export interface Dog {
   id: string,
   name: string,
   race: string,
