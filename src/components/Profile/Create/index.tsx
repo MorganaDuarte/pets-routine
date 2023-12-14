@@ -5,6 +5,7 @@ import { Dog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
 import Data from "../Form/Data";
+import VaccineTable from "../Form/./VaccinesTable";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -65,25 +66,7 @@ export default function Create() {
         <Data label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
         <Tabs defaultActiveKey="vaccine" transition={false} className="mb-3">
           <Tab eventKey="vaccine" title="Vacinas">
-            <Table striped bordered hover size="sm">
-              <thead>
-              <tr>
-                <th></th>
-                <th>Aplicada em</th>
-                <th>Replicar em</th>
-              </tr>
-              </thead>
-              <tbody>
-                {vaccineRows.map((row, index) => (
-                  <tr key={index}>
-                    <td><Form.Control placeholder={row.vaccine} onChange={(e) => handleVaccineChange(index, 'vaccine', e.target.value)}/></td>
-                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.appliedDate} onChange={(e) => handleVaccineChange(index, 'appliedDate', e.target.value)} /></td>
-                    <td><Form.Control placeholder="dd/mm/aaaa" defaultValue={row.replicateDate} onChange={(e) => handleVaccineChange(index, 'replicateDate', e.target.value)} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-            <Button variant="primary" onClick={handleAddRow}>Adicionar nova vacina</Button>
+            <VaccineTable vaccineRows={vaccineRows} handleVaccineChange={handleVaccineChange} handleAddRow={handleAddRow} />
           </Tab>
           <Tab eventKey="worms" title="Vermes">
             Tab content for Profile
