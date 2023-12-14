@@ -1,13 +1,14 @@
-import { Form, Table } from "react-bootstrap";
+import {Button, Form, Table} from "react-bootstrap";
 import { Dewormers } from "../../../../types/dewormers";
 import React from "react";
 
 interface Props {
   dewormersRows: Dewormers[];
   handlesDewormersChange: (index: number, field: keyof Dewormers, value: string) => void;
+  handleAddDewormerRow: () => void;
 }
 
-export default function DewormersTable({ dewormersRows, handlesDewormersChange }: Props) {
+export default function DewormersTable({ dewormersRows, handlesDewormersChange, handleAddDewormerRow }: Props) {
   return(
     <>
       <Table striped bordered hover size="sm">
@@ -28,6 +29,7 @@ export default function DewormersTable({ dewormersRows, handlesDewormersChange }
         ))}
         </tbody>
       </Table>
+      <Button variant="primary" onClick={handleAddDewormerRow}>Adicionar novo vermífugo</Button>
     </>
   )
 }

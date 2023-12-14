@@ -39,7 +39,7 @@ export default function Profile() {
               </tbody>
             </Table>
           </Tab>
-          <Tab eventKey="worms" title="Vermes">
+          <Tab eventKey="dewormers" title="Vermífugos">
             <Table striped bordered hover size="sm">
               <thead>
               <tr>

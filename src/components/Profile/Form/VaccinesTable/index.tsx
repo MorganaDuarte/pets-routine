@@ -4,9 +4,9 @@ import { Vaccines } from "../../../../types/vaccines";
 interface Props {
   vaccineRows: Vaccines[],
   handleVaccineChange: (index: number, field: keyof Vaccines, value: string) => void;
-  handleAddRow: () => void;
+  handleAddVaccineRow: () => void;
 }
-export default function VaccineTable({ vaccineRows, handleVaccineChange, handleAddRow }: Props) {
+export default function VaccineTable({ vaccineRows, handleVaccineChange, handleAddVaccineRow }: Props) {
   return(
     <>
       <Table striped bordered hover size="sm">
@@ -27,7 +27,7 @@ export default function VaccineTable({ vaccineRows, handleVaccineChange, handleA
         ))}
         </tbody>
       </Table>
-      <Button variant="primary" onClick={handleAddRow}>Adicionar nova vacina</Button>
+      <Button variant="primary" onClick={handleAddVaccineRow}>Adicionar nova vacina</Button>
     </>
   )
 }

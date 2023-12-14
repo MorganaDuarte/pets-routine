@@ -64,12 +64,18 @@ export default function Create() {
       return newRows;
     });
   };
-  const handleAddRow = () => {
+  const handleAddVaccineRow = () => {
     setVaccineRows((prevRows) => [
       ...prevRows,
       { vaccine: '', appliedDate: '', replicateDate: '' }
     ]);
   };
+  const handleAddDewormerRow = () => {
+    setDewormers((prevRows) => [
+      ...prevRows,
+      { dewormer: '', appliedDate: '', replicateDate: '' }
+    ]);
+  }
   useEffect(() => {
     const isMainFormComplete = Object.values(formData).every((value) => value !== "");
     setIsFormComplete(isMainFormComplete);
@@ -93,10 +99,10 @@ export default function Create() {
         <BasicDataForm label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
         <Tabs defaultActiveKey="vaccine" transition={false} className="mb-3">
           <Tab eventKey="vaccine" title="Vacinas">
-            <VaccineTable vaccineRows={vaccineRows} handleVaccineChange={handleVaccineChange} handleAddRow={handleAddRow} />
+            <VaccineTable vaccineRows={vaccineRows} handleVaccineChange={handleVaccineChange} handleAddVaccineRow={handleAddVaccineRow} />
           </Tab>
           <Tab eventKey="dewormers" title="Vermífugos">
-            < DewormersTable dewormersRows={dewormersRows} handlesDewormersChange={handlesDewormersChange} />
+            < DewormersTable dewormersRows={dewormersRows} handlesDewormersChange={handlesDewormersChange} handleAddDewormerRow={handleAddDewormerRow} />
           </Tab>
         </Tabs>
         <div className="d-flex justify-content-end">
