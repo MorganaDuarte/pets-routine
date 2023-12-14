@@ -1,6 +1,6 @@
-import { Form, Button, Table, Tab, Tabs } from "react-bootstrap";
+import { Form, Button, Tab, Tabs } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useState, ChangeEvent } from "react";
+import {useState, ChangeEvent, useEffect} from "react";
 import { Dog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
@@ -20,6 +20,7 @@ export default function Create() {
     { vaccine: 'Raiva', appliedDate: '', replicateDate: '' },
     { vaccine: 'V10', appliedDate: '', replicateDate: '' }
   ]);
+  const [isFormComplete, setIsFormComplete] = useState(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -48,6 +49,13 @@ export default function Create() {
       { vaccine: '', appliedDate: '', replicateDate: '' }
     ]);
   };
+  useEffect(() => {
+    const isMainFormComplete = Object.values(formData).every((value) => value !== "");
+    const areVaccinesComplete = vaccineRows.every(
+      (vaccine) => vaccine.vaccine !== "" && vaccine.appliedDate !== "" && vaccine.replicateDate !== ""
+    );
+    setIsFormComplete(isMainFormComplete && areVaccinesComplete);
+  }, [formData, vaccineRows]);
   function navigateToProfile(dog: Dog ) {
     navigate(`/profile/${dog.id}`, { state: { dog } })
   }
@@ -58,9 +66,10 @@ export default function Create() {
     localStorage.setItem("pets", JSON.stringify(pets));
     navigateToProfile(formData);
   }
+
   return(
     <>
-      <Form className="mt-4" onSubmit={save}>
+      <Form className="mt-4">
         <Data label="Nome" placeholder="Nome" name="name" value={formData.name} onChange={handleChange} />
         <Data label="Raça" placeholder="Raça" name="race" value={formData.race} onChange={handleChange} />
         <Data label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
@@ -73,7 +82,7 @@ export default function Create() {
           </Tab>
         </Tabs>
         <div className="d-flex justify-content-end">
-          <Button variant="dark" type="submit">Salvar</Button>
+          <Button variant="dark" type="submit" onClick={save} disabled={!isFormComplete}>Salvar</Button>
         </div>
       </Form>
     </>
