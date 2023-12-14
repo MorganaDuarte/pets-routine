@@ -9,7 +9,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Data({label, placeholder, name, value, onChange }: Props) {
+export default function BasicDataForm({label, placeholder, name, value, onChange }: Props) {
   return(
     <Form.Group className="mb-3">
       <Form.Label>{label}</Form.Label>

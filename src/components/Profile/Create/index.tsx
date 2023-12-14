@@ -4,7 +4,7 @@ import {useState, ChangeEvent, useEffect} from "react";
 import { Dog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
-import Data from "../Form/Data";
+import BasicDataForm from "../Form/./BasicDataForm";
 import VaccineTable from "../Form/./VaccinesTable";
 
 export default function Create() {
@@ -70,14 +70,14 @@ export default function Create() {
   return(
     <>
       <Form className="mt-4">
-        <Data label="Nome" placeholder="Nome" name="name" value={formData.name} onChange={handleChange} />
-        <Data label="Raça" placeholder="Raça" name="race" value={formData.race} onChange={handleChange} />
-        <Data label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+        <BasicDataForm label="Nome" placeholder="Nome" name="name" value={formData.name} onChange={handleChange} />
+        <BasicDataForm label="Raça" placeholder="Raça" name="race" value={formData.race} onChange={handleChange} />
+        <BasicDataForm label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
         <Tabs defaultActiveKey="vaccine" transition={false} className="mb-3">
           <Tab eventKey="vaccine" title="Vacinas">
             <VaccineTable vaccineRows={vaccineRows} handleVaccineChange={handleVaccineChange} handleAddRow={handleAddRow} />
           </Tab>
-          <Tab eventKey="worms" title="Vermes">
+          <Tab eventKey="vermifuges" title="Vermífugos">
             Tab content for Profile
           </Tab>
         </Tabs>
