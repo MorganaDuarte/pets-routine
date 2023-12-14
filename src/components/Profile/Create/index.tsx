@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
 import BasicDataForm from "../Form/./BasicDataForm";
 import VaccineTable from "../Form/./VaccinesTable";
+import DewormersTable from "../Form/./DewormersTable";
+import {Dewormers} from "../../../types/dewormers";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -14,11 +16,15 @@ export default function Create() {
     race: "",
     birthDate: "",
     id: uuidv4(),
-    vaccines: []
+    vaccines: [],
+    dewormers: []
   });
   const [vaccineRows, setVaccineRows] = useState([
     { vaccine: 'Raiva', appliedDate: '', replicateDate: '' },
     { vaccine: 'V10', appliedDate: '', replicateDate: '' }
+  ]);
+  const [dewormersRows, setDewormers] = useState([
+    { dewormer: '', appliedDate: '', replicateDate: '' },
   ]);
   const [isFormComplete, setIsFormComplete] = useState(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +49,21 @@ export default function Create() {
       return newRows;
     });
   };
+  const handlesDewormersChange = (index: number, field: keyof Dewormers, value: string) => {
+    setDewormers((prevRows) => {
+      const newRows = [...prevRows];
+      newRows[index][field] = value;
+
+      setFormData((prevData) => {
+        const newData = {...prevData}
+        newData.dewormers = newRows
+
+        return newData
+      });
+
+      return newRows;
+    });
+  };
   const handleAddRow = () => {
     setVaccineRows((prevRows) => [
       ...prevRows,
@@ -51,11 +72,8 @@ export default function Create() {
   };
   useEffect(() => {
     const isMainFormComplete = Object.values(formData).every((value) => value !== "");
-    const areVaccinesComplete = vaccineRows.every(
-      (vaccine) => vaccine.vaccine !== "" && vaccine.appliedDate !== "" && vaccine.replicateDate !== ""
-    );
-    setIsFormComplete(isMainFormComplete && areVaccinesComplete);
-  }, [formData, vaccineRows]);
+    setIsFormComplete(isMainFormComplete);
+  }, [formData]);
   function navigateToProfile(dog: Dog ) {
     navigate(`/profile/${dog.id}`, { state: { dog } })
   }
@@ -77,8 +95,8 @@ export default function Create() {
           <Tab eventKey="vaccine" title="Vacinas">
             <VaccineTable vaccineRows={vaccineRows} handleVaccineChange={handleVaccineChange} handleAddRow={handleAddRow} />
           </Tab>
-          <Tab eventKey="vermifuges" title="Vermífugos">
-            Tab content for Profile
+          <Tab eventKey="dewormers" title="Vermífugos">
+            < DewormersTable dewormersRows={dewormersRows} handlesDewormersChange={handlesDewormersChange} />
           </Tab>
         </Tabs>
         <div className="d-flex justify-content-end">

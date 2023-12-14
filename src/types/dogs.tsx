@@ -1,9 +1,11 @@
 import { Vaccines } from "./vaccines";
+import { Dewormers } from "./dewormers";
 
 export interface Dog {
   id: string,
   name: string,
   race: string,
   birthDate: string,
-  vaccines: Vaccines[]
+  vaccines: Vaccines[],
+  dewormers: Dewormers[]
 }

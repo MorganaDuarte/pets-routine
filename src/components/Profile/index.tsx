@@ -1,10 +1,12 @@
 import { Form, Tab, Table, Tabs } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import {Vaccines} from "../../types/vaccines";
+import {Dewormers} from "../../types/dewormers";
 
 export default function Profile() {
   const location = useLocation();
   const { dog } = location.state;
+
   return(
     <>
       <Form className="mt-4">
@@ -38,7 +40,24 @@ export default function Profile() {
             </Table>
           </Tab>
           <Tab eventKey="worms" title="Vermes">
-            Tab content for Profile
+            <Table striped bordered hover size="sm">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Tomado em</th>
+                <th>Tomar novamente em</th>
+              </tr>
+              </thead>
+              <tbody>
+              {dog.dewormers.map((dog: Dewormers, index: number ) => (
+                <tr key={index}>
+                  <td><Form.Control defaultValue={dog.dewormer} /></td>
+                  <td><Form.Control defaultValue={dog.appliedDate} /></td>
+                  <td><Form.Control defaultValue={dog.replicateDate} /></td>
+                </tr>
+              ))}
+              </tbody>
+            </Table>
           </Tab>
         </Tabs>
       </Form>
