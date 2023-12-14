@@ -4,6 +4,7 @@ import { useState, ChangeEvent } from "react";
 import { Dog } from "../../../types/dogs";
 import { v4 as uuidv4 } from 'uuid';
 import { Vaccines } from "../../../types/vaccines";
+import Data from "../Form/Data";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -59,14 +60,9 @@ export default function Create() {
   return(
     <>
       <Form className="mt-4" onSubmit={save}>
-        <Form.Group className="mb-3">
-          <Form.Label>Nome</Form.Label>
-          <Form.Control placeholder="Nome" name="name" value={formData.name} onChange={handleChange}/>
-          <Form.Label>Raça</Form.Label>
-          <Form.Control placeholder="Raça" name="race" value={formData.race} onChange={handleChange}/>
-          <Form.Label>Data de Nascimento</Form.Label>
-          <Form.Control placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange}/>
-        </Form.Group>
+        <Data label="Nome" placeholder="Nome" name="name" value={formData.name} onChange={handleChange} />
+        <Data label="Raça" placeholder="Raça" name="race" value={formData.race} onChange={handleChange} />
+        <Data label="Data de Nascimento" placeholder="mm/aaaa" name="birthDate" value={formData.birthDate} onChange={handleChange} />
         <Tabs defaultActiveKey="vaccine" transition={false} className="mb-3">
           <Tab eventKey="vaccine" title="Vacinas">
             <Table striped bordered hover size="sm">
