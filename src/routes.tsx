@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Create from "./components/Profile/Create";
 import Profile from "./components/Profile";
 import DefaultPage from "./components/DefaultPage";
