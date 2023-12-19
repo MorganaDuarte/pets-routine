@@ -9,11 +9,13 @@ export default function ViewProfileButton() {
   function navigateToProfile(dog: Dog ) {
     navigate(`/profile/${dog.id}`, { state: { dog } })
   }
-  return(
-    <>
-      {dogs.map((dog: Dog ) => (
-        <Button variant="outline-dark" onClick={() => navigateToProfile(dog)} key={dog.id}>{dog.name}</Button>
+  return (
+    <div className="d-flex justify-content-center">
+      {dogs.map((dog: Dog) => (
+        <Button variant="outline-dark" onClick={() => navigateToProfile(dog)} key={dog.id} className="mx-2">
+          {dog.name}
+        </Button>
       ))}
-    </>
+    </div>
   )
 }

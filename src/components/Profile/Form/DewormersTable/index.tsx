@@ -29,7 +29,7 @@ export default function DewormersTable({ dewormersRows, handlesDewormersChange, 
         ))}
         </tbody>
       </Table>
-      <Button variant="primary" onClick={handleAddDewormerRow}>Adicionar novo vermífugo</Button>
+      <Button variant="outline-dark" onClick={handleAddDewormerRow}>Adicionar novo vermífugo</Button>
     </>
   )
 }

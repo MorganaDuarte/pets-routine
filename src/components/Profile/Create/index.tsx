@@ -106,7 +106,7 @@ export default function Create() {
           </Tab>
         </Tabs>
         <div className="d-flex justify-content-end">
-          <Button variant="dark" type="submit" onClick={save} disabled={!isFormComplete}>Salvar</Button>
+          <Button variant="dark" onClick={save} disabled={!isFormComplete}>Salvar</Button>
         </div>
       </Form>
     </>

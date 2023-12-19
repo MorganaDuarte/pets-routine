@@ -1,9 +1,12 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
 
 export default function Header() {
   return(
     <>
-      <Link to={'/'}>Home!</Link>
+      <Navbar>
+        <Navbar.Brand href="/">Página Inicial</Navbar.Brand>
+      </Navbar>
       <Outlet />
     </>
   )

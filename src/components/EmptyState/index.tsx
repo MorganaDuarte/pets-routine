@@ -1,7 +1,7 @@
 export default function EmptyState() {
   return(
-    <>
-      <p>Um teste de empty state</p>
-    </>
+    <p className="d-flex justify-content-center">
+      Você ainda não possui nenhum pet cadastrado. Clique em 'Criar pet' para cadastrar.
+    </p>
   )
 }

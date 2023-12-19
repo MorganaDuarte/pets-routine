@@ -27,7 +27,7 @@ export default function VaccineTable({ vaccineRows, handleVaccineChange, handleA
         ))}
         </tbody>
       </Table>
-      <Button variant="primary" onClick={handleAddVaccineRow}>Adicionar nova vacina</Button>
+      <Button variant="outline-dark" onClick={handleAddVaccineRow}>Adicionar nova vacina</Button>
     </>
   )
 }
