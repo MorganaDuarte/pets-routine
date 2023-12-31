@@ -5,7 +5,7 @@ export default function Header() {
   return(
     <>
       <Navbar>
-        <Navbar.Brand href="/">Página Inicial</Navbar.Brand>
+        <Navbar.Brand href="/pets-routine">Página Inicial</Navbar.Brand>
       </Navbar>
       <Outlet />
     </>

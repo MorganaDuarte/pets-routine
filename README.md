@@ -1,8 +1,9 @@
-<h2>Pets Routine</h2>
+<h2> Pets routine 🐶 </h2>
 
 <h3>Hello guys</h3>
-<p> A React project</p>
+<p> A React with TypeScript project!</p>
 
-<p> Initial project using React. The application's idea is to maintain a record with your pets' information, such as vaccines and medicines. </p>
+<p> You can add one or more pets and register your vaccines and others.</p>
+<br>
 
 <p>Project create for study!</p>
