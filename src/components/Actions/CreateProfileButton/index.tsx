@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function CreateProfileButton() {
   const navigate = useNavigate();
   const navigateToCreate = () => {
-    navigate('/create')
+    navigate('/profile/new', { state: { dog: undefined } })
   }
   return(
     <>

@@ -10,8 +10,7 @@ export default function AppRouter() {
       <Routes>
         <Route path='/' element={<Header />}>
           <Route index element={<DefaultPage />} />
-          <Route path='/create' element={<Create />} />
-          <Route path='/profile/:id/*' element={<Profile />} />
+          <Route path='/profile/:id/*' element={<Create />} />
         </Route>
       </Routes>
     </Router>

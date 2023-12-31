@@ -6,7 +6,6 @@ import {Dewormers} from "../../types/dewormers";
 export default function Profile() {
   const location = useLocation();
   const { dog } = location.state;
-
   return(
     <>
       <Form className="mt-4">
