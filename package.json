@@ -1,6 +1,6 @@
 {
   "name": "dogs-routine",
-  "homepage": "<https://morganaduarte.github.io/pets-routine/>#",
+  "homepage": "https://morganaduarte.github.io/pets-routine/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
