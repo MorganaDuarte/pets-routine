@@ -8,6 +8,7 @@ import BasicDataForm from "./Form/BasicDataForm";
 import VaccineTable from "./Form/VaccinesTable";
 import DewormersTable from "./Form/DewormersTable";
 import {Dewormers} from "../../types/dewormers";
+import Snackbar from "../Actions/Snackbar";
 
 const EMPTY_DOG = {
   name: "",
@@ -32,6 +33,7 @@ export default function Profile() {
   const currentVaccines = dog ? dog.vaccines : EMPTY_VACCINES;
   const currentDewormers = dog ? dog.dewormers : EMPTY_DEWORMERS;
   const navigate = useNavigate();
+  const [showValue, setShowValue] = useState(false);
   const [formData, setFormData] = useState<Dog>(currentDog);
   const [vaccineRows, setVaccineRows] = useState<Vaccines[]>(currentVaccines);
   const [dewormersRows, setDewormers] = useState<Dewormers[]>(currentDewormers);
@@ -100,6 +102,7 @@ export default function Profile() {
     filteredPetIndex !== -1 ? pets[filteredPetIndex] = formData : pets.push(formData);
     localStorage.setItem("pets", JSON.stringify(pets));
     navigateToProfile(formData);
+    setShowValue(true);
   }
   return(
     <>
@@ -119,6 +122,7 @@ export default function Profile() {
           <Button variant="dark" onClick={save} disabled={!isFormComplete}>Salvar</Button>
         </div>
       </Form>
+      <Snackbar showValue={showValue} />
     </>
   )
 }
